@@ -1,31 +1,31 @@
 import React, { useEffect } from 'react'
 import { styled } from 'linaria/react'
-import { useQuery } from 'graphql-hooks'
+import Card from '../../../components/Card'
 
 const Wrap = styled.div`
-    background-color: #00a6f3;
     flex: 1;
 `
 
-const CURRENT_USER = `
-    query {
-        currentUser {
-            id
-            username
-        }
-    }
-`
-
+const roomList = [
+    { id: 0, name: '一号菇房' },
+    { id: 1, name: '二号菇房' }
+]
 function RoomList() {
     useEffect(() => {
         wx.setNavigationBarTitle({
             title: '菇房列表'
         })
     }, [])
-    const { loading, error, data } = useQuery(CURRENT_USER)
-    if (loading) return <div>loading</div>
-    console.log(data)
-    return <Wrap></Wrap>
+    const handleCLickRoom = id => {
+        window.open(`/room/${id}`)
+    }
+    return (
+        <Wrap>
+            {roomList.map(v => (
+                <Card onClick={() => handleCLickRoom(v.id)}>{v.name}</Card>
+            ))}
+        </Wrap>
+    )
 }
 
 export default RoomList

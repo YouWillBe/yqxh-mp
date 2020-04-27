@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { styled } from 'linaria/react'
 
-import Login from './Login'
 import Nav from './Nav'
 import TunnelList from './TunnelList'
 import RoomList from './RoomList'
@@ -18,13 +17,6 @@ const Wrap = styled.div`
 `
 
 function App() {
-    const [loggedIn, setLoggedIn] = useState(false)
-    const handleLoginSuccess = () => {
-        setLoggedIn(true)
-    }
-    if (!loggedIn) {
-        return <Login loginSuccess={handleLoginSuccess}></Login>
-    }
     return (
         <Router>
             <Wrap>

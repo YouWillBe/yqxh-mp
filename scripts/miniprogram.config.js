@@ -4,8 +4,9 @@
 
 module.exports = {
     origin: 'https://miniprogram.com',
-    entry: '/main',
+    entry: '/login',
     router: {
+        login: ['/login'],
         main: ['/main'],
         tunnel: ['/tunnel/:tunnelId'],
         batch: ['/batch/:batchId'],
@@ -16,21 +17,22 @@ module.exports = {
         userPowerManage: ['/user-power-manage']
     },
     redirect: {
-        notFound: 'main',
-        accessDenied: 'main'
+        notFound: 'login',
+        accessDenied: 'login'
     },
     generate: {
         autoBuildNpm: 'npm',
         subpackages: {
-            package1: ['tunnel'],
-            package2: ['batch'],
-            package3: ['stage'],
-            package4: ['stageManage'],
-            package5: ['indicatorManage'],
-            package6: ['userPowerManage']
+            package1: ['main'],
+            package2: ['tunnel'],
+            package3: ['batch'],
+            package4: ['stage'],
+            package5: ['stageManage'],
+            package6: ['indicatorManage'],
+            package7: ['userPowerManage']
         },
         preloadRule: {
-            main: {
+            login: {
                 network: 'all',
                 packages: [
                     'package1',
@@ -44,7 +46,7 @@ module.exports = {
         }
     },
     app: {
-        navigationBarTitleText: 'miniprogram-project'
+        navigationBarTitleText: '双孢菇生产管理系统'
     },
     appExtraConfig: {
         sitemapLocation: 'sitemap.json'
@@ -63,7 +65,7 @@ module.exports = {
         attrValueReduce: 5000
     },
     projectConfig: {
-        projectname: 'kbone-template-react',
+        projectname: '双孢菇生产管理系统',
         appid: 'wxe7de0046998773b8'
     }
 }

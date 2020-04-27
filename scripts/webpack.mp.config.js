@@ -9,8 +9,10 @@ const isOptimize = false // 是否压缩业务代码，开发者工具可能无�
 module.exports = {
     mode: 'production',
     entry: {
+        login: path.resolve(__dirname, '../src/page/login/index.js'),
         main: path.resolve(__dirname, '../src/page/main/index.js'),
         tunnel: path.resolve(__dirname, '../src/page/tunnel/index.js'),
+        room: path.resolve(__dirname, '../src/page/room/index.js'),
         batch: path.resolve(__dirname, '../src/page/batch/index.js'),
         stage: path.resolve(__dirname, '../src/page/stage/index.js'),
         stageManage: path.resolve(

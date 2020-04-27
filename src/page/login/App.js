@@ -3,7 +3,7 @@ import { styled } from 'linaria/react'
 import { css } from 'linaria'
 import { useMutation } from 'graphql-hooks'
 
-import { instance } from '../index'
+import { instance } from './index'
 
 const Wrap = styled.div`
     width: 100%;
@@ -54,7 +54,7 @@ const LOGIN_MUTATION = `
     }
 `
 
-function Login({ loginSuccess }) {
+function Login() {
     const [needAuth, setNeedAuth] = useState(true)
     const emitLogin = uInfo => {
         let userInfo = {
@@ -76,7 +76,8 @@ function Login({ loginSuccess }) {
                             'Authorization'
                         ] = `Bearer ${token}`
                         window.$$global.token = token
-                        loginSuccess()
+                        window.location.replace('/main')
+                        wx.hideHomeButton()
                     }
                 })
             }
