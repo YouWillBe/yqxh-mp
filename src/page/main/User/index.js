@@ -1,34 +1,54 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { styled } from 'linaria/react'
-
+import { useQuery } from 'graphql-hooks'
 const Wrap = styled.div`
-    background-color: #00a6f3;
     flex: 1;
 `
-const list = ['aaa', 'bbb', 'ccc']
+const Header = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+`
+const Cotent = styled.div``
+const Ava = styled.div`
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 50%;
+`
+const Name = styled.div``
+
+const CURRENT_USER = `
+    query {
+        currentUser {
+            id
+            username
+            avatarUrl
+            realName
+            nickName
+            gender
+            role
+        }
+    }
+`
 
 function User() {
-    const pickerRef = useRef()
-    const [current, setCurrent] = useState(0)
-    const handleChange = e => {
-        console.log(e)
-        setCurrent(parseInt(e.detail.value))
-    }
-    useEffect(() => {
-        pickerRef.current.addEventListener('change', handleChange)
-        // pickerRef.current.setAttribute('range', JSON.stringify(list))
-    }, [])
+    const { loading, error, data } = useQuery(CURRENT_USER)
+    if (loading) return <div>loading</div>
+    console.log(data)
     return (
         <Wrap>
-            <wx-picker
-                ref={pickerRef}
-                range={list}
-                // range={JSON.stringify(list) }
-                value={current}
-                onChange={handleChange}
-            >
-                <div>{list[current].text}</div>
-            </wx-picker>
+            <Header>
+                <Ava>
+                    <img
+                        src={data.currentUser.avatarUrl}
+                        width='50rpx'
+                        height='50rpx'
+                    />
+                </Ava>
+                <Name>{data.currentUser.nickName}</Name>
+            </Header>
+            <Cotent></Cotent>
         </Wrap>
     )
 }
