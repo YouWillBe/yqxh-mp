@@ -27,27 +27,28 @@ const Helper = styled.div`
     font-size: 28rpx;
 `
 
-const UPDATE_STAGE_DICTIONARY = `
-    mutation UpdateStageDictionary($inputStageDictionary: InputStageDictionary) {
-        updateStageDictionary(inputStageDictionary: $inputStageDictionary) {
+const UPDATE_INDICATORS = `
+    mutation UpdateIndicators($inputIndicators: InputIndicators) {
+        updateIndicators(inputIndicators: $inputIndicators) {
             id
             name
             environment
-            status
+            isUse
+            unit
         }
     }
 `
 
-function StageCard({ stage }) {
-    const [value, setValue] = useState(!!stage.status)
+function StageCard({ indicator }) {
+    const [value, setValue] = useState(!!indicator.isUse)
     const [loading, setLoading] = useState(false)
-    const [updateStageDictionary] = useMutation(UPDATE_STAGE_DICTIONARY)
+    const [updateIndicators] = useMutation(UPDATE_INDICATORS)
     const handleClick = async () => {
         setLoading(true)
-        const { data, error } = await updateStageDictionary({
+        const { data, error } = await updateIndicators({
             variables: {
-                inputStageDictionary: {
-                    ...stage,
+                inputIndicators: {
+                    ...indicator,
                     status: !value ? 1 : 0
                 }
             }
@@ -56,13 +57,13 @@ function StageCard({ stage }) {
             console.log(error)
         } else {
             setLoading(false)
-            setValue(!!data.updateStageDictionary.status)
+            setValue(!!data.updateIndicators.status)
         }
     }
     return (
         <Box>
             <Content>
-                <Name>{stage.name}</Name>
+                <Name>{indicator.name}</Name>
                 <SwitchWrap>
                     <Switch
                         value={value}

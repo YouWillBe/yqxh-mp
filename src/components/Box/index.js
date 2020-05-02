@@ -2,20 +2,15 @@ import React from 'react'
 import { styled } from 'linaria/react'
 
 const Container = styled.div`
-    height: 140rpx;
     border-radius: 10rpx;
     background-color: white;
-    margin: 20rpx 30rpx;
+    margin: 20rpx 0;
     color: #000;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 2px 0px;
-    padding: 0 20rpx;
-    font-weight: bold;
-    font-size: 24rpx;
-    display: flex;
-    align-items: center;
+    font-size: 32rpx;
 `
 
-const Card = ({ className, children, ...props }) => {
+const Box = ({ className, children, ...props }) => {
     return (
         <Container className={{ className }} {...props}>
             {children}
@@ -23,4 +18,4 @@ const Card = ({ className, children, ...props }) => {
     )
 }
 
-export default Card
+export default Box

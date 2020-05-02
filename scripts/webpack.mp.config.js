@@ -15,6 +15,8 @@ module.exports = {
         room: path.resolve(__dirname, '../src/page/room/index.js'),
         batch: path.resolve(__dirname, '../src/page/batch/index.js'),
         stage: path.resolve(__dirname, '../src/page/stage/index.js'),
+        addStage: path.resolve(__dirname, '../src/page/addStage/index.js'),
+        addIndicator: path.resolve(__dirname, '../src/page/addIndicator/index.js'),
         stageManage: path.resolve(
             __dirname,
             '../src/page/stageManage/index.js'

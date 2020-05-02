@@ -2,9 +2,12 @@ import React, { useEffect } from 'react'
 import { styled } from 'linaria/react'
 import { useQuery } from 'graphql-hooks'
 
-import Card from '../../components/Card'
+import IndicatorCard from './IndicatorCard'
+import Button from '../../components/Button'
 
-const Wrap = styled.div``
+const Wrap = styled.div`
+    padding: 30rpx;
+`
 
 const INDICATORS_LIST = `
     query IndicatorsList($pageQuery: PageQuery!, $indicatorQuery: IndicatorsQuery!) {
@@ -41,11 +44,13 @@ function App() {
             }
         }
     })
+    const handleClick = () => {}
     if (loading) return <div>loading...</div>
     return (
         <Wrap>
+            <Button onClick={handleClick}>新增指标</Button>
             {data.indicatorsList.map(v => (
-                <Card key={v.id}>{v.name}</Card>
+                <IndicatorCard key={v.id} indicator={v}></IndicatorCard>
             ))}
         </Wrap>
     )

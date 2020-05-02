@@ -14,7 +14,9 @@ module.exports = {
         room: ['/room/:roomId'],
         stageManage: ['/stage-manage/:stageType'],
         indicatorManage: ['/indicator-manage/:indicatorType'],
-        userPowerManage: ['/user-power-manage']
+        userPowerManage: ['/user-power-manage'],
+        addStage: ['/add-stage/:environment'],
+        addIndicator: ['/add-indicator/:environment']
     },
     redirect: {
         notFound: 'login',
